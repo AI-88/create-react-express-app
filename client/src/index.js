@@ -8,7 +8,13 @@ import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  {},
+  composeEnhancer(applyMiddleware(reduxThunk))
+);
 
 ReactDOM.render(
   <Provider store={store}>
